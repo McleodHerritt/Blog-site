@@ -1,0 +1,26 @@
+<html lang="en">
+  <head>
+    <!-- head contents -->
+  </head>
+  <body>
+    <nav>
+      <!-- Navigation links -->
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/login">Log In</a>
+    </nav>
+    <main>
+      {{#if posts}}
+        {{#each posts}}
+          <article>
+            <h2>{{title}}</h2>
+            <p>{{content}}</p>
+            <!-- More post details -->
+          </article>
+        {{/each}}
+      {{else}}
+        <p>No posts to display.</p>
+      {{/if}}
+    </main>
+  </body>
+</html>
