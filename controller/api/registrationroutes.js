@@ -1,7 +1,11 @@
-const User = require("./models/User");
-const { hashPassword } = require("./utils/auth");
+const express = require("express");
+const router = express.Router();
 
-app.post("/signup", async (req, res) => {
+const User = require("../../models/user");
+const { hashPassword } = require("../../utils/auth");
+const withAuth = require("../../middleware/authMiddleware");
+
+router.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
     const hashedPassword = await hashPassword(password);
@@ -23,3 +27,5 @@ app.post("/signup", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+module.exports = router;

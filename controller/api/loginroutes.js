@@ -1,7 +1,11 @@
-const User = require("./models/User");
-const { comparePassword } = require("./utils/auth");
+const express = require("express");
+const router = express.Router();
 
-app.post("/login", async (req, res) => {
+const User = require("../../models/user");
+const { comparePassword } = require("../../utils/auth");
+const withAuth = require("../../middleware/authMiddleware");
+
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
@@ -29,3 +33,5 @@ app.post("/login", async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+module.exports = router;
